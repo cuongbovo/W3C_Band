@@ -7,6 +7,7 @@
 
 /* Dùng chung */
 html {
+    scroll-behavior: smooth;
     font-family: Arial, Helvetica, sans-serif;
 }
 

@@ -2,6 +2,7 @@
     "recommendations": [
         "github.vscode-pull-request-github",
         "knisterpeter.vscode-github",
-        "formulahendry.auto-rename-tag"
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag"
     ]
 }

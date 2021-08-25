@@ -5,6 +5,7 @@
     <title>W3.CSS Template</title>
     <link rel="icon" href="./assets/icon/icon1.png" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
                 <li><a href="#tour">Tour</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         More
                         <!-- <i class="fa-solid fa-caret-down"></i> -->
                         <i class="nav-arrow-down ti-angle-down"></i>
@@ -30,11 +31,15 @@
                 </li>
             </ul>
             <!-- End Nav -->
-            <!-- Bengin Search -->
+
+            <!-- Search button-->
             <div class="search-btn">
                 <i class="search-icon ti-search"></i>
             </div>        
-        <!-- End Search -->
+            <!-- Mobile menu button-->
+            <div id="mobile-menu" class="mobile-menu-btn">
+                <i class="menu-icon ti-menu"></i>
+            </div>
         </div>
         
         
@@ -135,16 +140,16 @@
                         <form action="">
                             <div class="row">
                                 <div class="col two-col">
-                                    <input type="text" placeholder="Name" id="" required class="form-control">
+                                    <input type="text" placeholder="Name"  required class="form-control">
                                 </div>
                                 <div class="col two-col">
-                                    <input type="text" placeholder="Email" id="" required class="form-control">
+                                    <input type="text" placeholder="Email"  required class="form-control">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col one-col mt-8px">
-                                    <input type="text" placeholder="Message" id="" required class="form-control">
+                                    <input type="text" placeholder="Message" required class="form-control">
                                 </div>
                             </div>
 
@@ -236,8 +241,39 @@
         modal.addEventListener('click',hideBuyTickets)
         
         modalContainer.addEventListener('click',function(event){
-            event.stopPropagation()
+            event.stopPropagation() //ngừng nổi bọt
         })
+
+        // Responsive
+        var header = document.getElementById('header');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var currentHeight = header.clientHeight;
+
+        //Đóng mở mobile menu
+        mobileMenu.onclick = function() {
+            var isClosed = header.clientHeight === currentHeight;
+            if (isClosed) {
+                header.style.height = 'auto';
+            }else {
+                header.style.height = null;
+            }
+        }
+
+        //Tự động đóng khi chọn menu
+        var menuItems = document.querySelectorAll('#nav li a[href*="#"]');
+
+        for (var i = 0; i <= menuItems.length ; i++) {
+            var menuItem = menuItems[i];            
+            
+            menuItem.onclick = function () {
+                var isParentMenu = this.nextElementSibling && menuItem.nextElementSibling.classList.contains('subnav');
+                if (isParentMenu) {
+                    header.style.height = preventDefault();
+                }else {
+                    header.style.height = null;
+                }   
+            }           
+        }
 
     </script>
 </body>
